@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        if (new File('./jsonschema-generator/build/libs').exists()) {
+//            flatDir {
+//                'jsonschema-generator/build/libs'
+//            }
+        }
+    }
+    dependencies {
+        if (new File("./jsonschema-generator/build/libs/jsonschema-generator-${System.getenv('VERSION_NUMBER') ?: '1.0-SNAPSHOT'}.jar").exists()) {
+            classpath fileTree(dir: 'jsonschema-generator/build/libs', include: ['*.jar'])
+        }
+    }
+}
+println "${System.getenv('VERSION_NUMBER') ?: '1.0-SNAPSHOT'}".trim()
+println "./jsonschema-generator/build/libs/jsonschema-generator-${System.getenv('VERSION_NUMBER') ?: '1.0-SNAPSHOT'}.jar"
+println new File("./jsonschema-generator/build/libs/jsonschema-generator-${System.getenv('VERSION_NUMBER') ?: '1.0-SNAPSHOT'}.jar").exists()
+if (new File("./jsonschema-generator/build/libs/jsonschema-generator-${System.getenv('VERSION_NUMBER') ?: '1.0-SNAPSHOT'}.jar").exists()) {
+    apply plugin: 'com.michaelschlies.gradle.jsonschema-generator'
+}
+
+group 'com.michaelschlies.gradle'
+version "${System.getenv('VERSION_NUMBER') ?: '1.0-SNAPSHOT'}".trim()
+
+if (project.plugins.hasPlugin('com.michaelschlies.gradle.jsonschema-generator')) {
+
+//    jsongenerator {
+//        search_packages = []
+//    }
+//    jsongenerator {
+//        sear
+//    }
+//jsonGenerator {
+//    search_packages = []
+//}
+//    json {
+//        search_packages = ['']
+//    }
+}
+
+//jsonGenerator {
+//
+//}
+
+println project.version
